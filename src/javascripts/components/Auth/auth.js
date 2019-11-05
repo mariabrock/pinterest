@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import utilities from '../../helpers/utilities';
-import GLB from './googleloginbutton.png';
+import GLB from './googleloginbutton.jpg';
 
 const signMeIn = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -15,10 +15,8 @@ const loginButton = () => {
   <img src=${GLB} />
   </button>`;
 
-  // /* <img src=${monkeyBut} /> */
-
   utilities.printToDom('auth', domString);
-  $('#google-auth').click(signMeIn);
+  $('#auth').click(signMeIn);
 };
 
 export default { loginButton };
