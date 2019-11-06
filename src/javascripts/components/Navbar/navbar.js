@@ -2,7 +2,7 @@ import $ from 'jquery';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-const authDiv = $('#auth');
+// const authDiv = $('#auth');
 const logoutButton = $('#navbar-button-logout');
 
 const logoutEvent = () => {
@@ -10,8 +10,8 @@ const logoutEvent = () => {
     e.preventDefault();
     firebase.auth().signOut()
       .then(() => {
-        authDiv.removeClass('hide');
-        logoutButton.addClass('hide');
+        // authDiv.removeClass('hide');
+        // logoutButton.addClass('hide');
       }).catch((err) => console.error('you still logged in', err));
   });
 };
