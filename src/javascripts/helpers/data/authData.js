@@ -11,7 +11,7 @@ const checkLoginStatus = () => {
       // someone is logged in - we should not see auth component
       logoutNavbar.removeClass('hide');
       authDiv.addClass('hide');
-      console.error(user.uid);
+      // console.error(user.uid);
     } else {
       //  nobody logged in SHOW auth component
       logoutNavbar.addClass('hide');

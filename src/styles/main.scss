@@ -2,11 +2,11 @@
 
 body {
   background-color: grey;
+  .hide {
+    display: none;
+  }
 }
 
-.hide {
-  display: none;
-}
 
 #auth {
   display: flex;

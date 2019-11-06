@@ -10,8 +10,8 @@ const logoutEvent = () => {
     e.preventDefault();
     firebase.auth().signOut()
       .then(() => {
-        authDiv.addclass('hide');
-        logoutButton.addclass('hide');
+        authDiv.removeClass('hide');
+        logoutButton.addClass('hide');
       }).catch((err) => console.error('you still logged in', err));
   });
 };
