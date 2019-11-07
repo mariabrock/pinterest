@@ -1,0 +1,12 @@
+{
+  "board1": {
+    "id": "board1",
+    "name": "Space",
+    "uid": "myuidhere"
+  },
+  "board2": {
+    "id": "board2",
+    "name": "Books",
+    "uid": "myuidhere"
+  }
+}

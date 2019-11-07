@@ -10,7 +10,7 @@ import boards from './components/Boards/boards';
 import 'bootstrap';
 import '../styles/main.scss';
 
-console.error('hi');
+// console.error('hi');
 
 const init = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
