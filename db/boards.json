@@ -1,12 +1,12 @@
 {
   "board1": {
-    "id": "board1",
-    "name": "Space",
+    "boardId": "board1",
+    "boardName": "Space",
     "uid": "lTaF8Z6sgGNEyrm0pph3ooTpIqg1"
   },
   "board2": {
-    "id": "board2",
-    "name": "Books",
+    "boardId": "board2",
+    "boardName": "Books",
     "uid": "lTaF8Z6sgGNEyrm0pph3ooTpIqg1"
   }
 }
