@@ -2,6 +2,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import $ from 'jquery';
 
+import boards from '../../components/Boards/boards';
+import home from '../../components/Home/home';
+
 const authDiv = $('#auth');
 const homeDiv = $('#home');
 const boardsDiv = $('#boards');
@@ -15,6 +18,9 @@ const checkLoginStatus = () => {
       authDiv.addClass('d-none');
       homeDiv.addClass('d-none');
       boardsDiv.removeClass('d-none');
+      boards.printAllBoards(user.uid);
+      home.printPinterest();
+      boards.printAllBoards(user.uid);
       // console.error(user.uid);
     } else {
       //  nobody logged in SHOW auth component
