@@ -16,15 +16,14 @@ const printAllBoards = (user) => {
   boardsData.getMyBoards(user.uid)
     .then((bords) => {
       let domString = '<h1>Boards</h1>';
-      domString += '<div class="row">';
+      domString += '<div class="row" id="board-cards">';
       bords.forEach((bord) => {
-        console.log(bord);
         domString += `
-          <div class="col-sm-4">
-            <div class="card"> 
+          <div class="col-sm-6">
+            <div class="card">
               <div class="card-body">
               <h5 class="card-title">${bord.boardName}</h5>
-              <button class="btn btn-primary">View</button>
+              <button class="btn btn-primary" id="view-board">View</button>
               </div>
             </div>
           </div>  
