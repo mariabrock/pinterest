@@ -13,8 +13,11 @@ const getMyPins = (boardId) => new Promise((resolve, reject) => {
         pins.push(demPins[fbId]);
       });
       resolve(pins);
+      console.log(pins);
     })
     .catch((error) => reject(error));
 });
 
-export default { getMyPins };
+const deleteAPin = (pinId) => axios.delete(`${baseUrl}/pins/${pinId}.json`);
+
+export default { getMyPins, deleteAPin };

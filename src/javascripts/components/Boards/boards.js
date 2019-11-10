@@ -1,15 +1,32 @@
 import $ from 'jquery';
+// import firebase from 'firebase/app';
+import 'firebase/auth';
+
 import boardsData from '../../helpers/data/boardsData';
 import singleBoard from '../singleBoard/singleBoard';
 
 import utilities from '../../helpers/utilities';
+import pinsData from '../../helpers/data/pinsData';
 
 import './boards.scss';
+
+// const getCurrentUid = () => firebase.auth().currentUser.uid;
+
+const deletePin = (e) => {
+  e.preventDefault();
+  const pinId = e.target.id.split('-del-')[0];
+  const boardId = e.target.id.split('-del-')[1];
+  pinsData.deleteAPin(pinId)
+    .then(() => {
+      // eslint-disable-next-line no-use-before-define
+      singleBoard.showOneBoard(boardId);
+    })
+    .catch((error) => console.error(error));
+};
 
 const addBoardClickEvent = (e) => {
   e.preventDefault();
   singleBoard.showOneBoard(e.target.id);
-  console.log(e.target.id);
 };
 
 // <img src="..." class="card-img-top" alt="...">
@@ -32,10 +49,12 @@ const printAllBoards = (user) => {
           `;
       });
       domString += '</div>';
+      console.log(user.uid);
       utilities.printToDom('boards', domString);
       $('body').on('click', '.boardClick', addBoardClickEvent);
+      $('body').on('click', '.delete', deletePin);
     })
     .catch((error) => console.error(error));
 };
 
-export default { printAllBoards, addBoardClickEvent };
+export default { printAllBoards, addBoardClickEvent, deletePin };
