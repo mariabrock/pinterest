@@ -20,16 +20,14 @@ const showOneBoard = (boardId) => {
       pins.forEach((pin) => {
         domString += `
         <div class="card col-4">
-          <img src="${pin.imgUrl}" class="card-img-top" alt="${pin.name}">
+          <img src="${pin.imageUrl}" class="card-img-top" alt="${pin.pinName}">
           <div class="card-body">
-            <h5 class="card-title">${pin.name}</h5>
-            <p class="card-text">${pin.description}</p>
+            <h5 class="card-title">${pin.pinName}</h5>
           </div>
         </div>
       `;
       });
       domString += '</div>';
-      console.log('showOneBoard');
       utilities.printToDom('single-board', domString);
       $('#single-board').on('click', '#all-boards', backToBoards);
       $('#boards').addClass('d-none');

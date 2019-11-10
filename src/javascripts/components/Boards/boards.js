@@ -9,7 +9,7 @@ import './boards.scss';
 const addBoardClickEvent = (e) => {
   e.preventDefault();
   singleBoard.showOneBoard(e.target.id);
-  console.log('addBoardClickEvent');
+  console.log(e.target.id);
 };
 
 // <img src="..." class="card-img-top" alt="...">
