@@ -7,8 +7,8 @@
     display: flex;
     justify-content: center
   }
-  // #board-cards {
-  //   width: 100px;
-  //   height: 100px;
-  // }
+  #board-cards {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
