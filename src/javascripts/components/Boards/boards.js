@@ -26,12 +26,13 @@ const deletePin = (e) => {
 
 const deleteBoard = (e) => {
   e.preventDefault();
-  // const pinId = e.target.id.split('-del-')[0];
+  const boardId = e.target.id.split('-del-')[0];
+  const uid = e.target.id.split('-del-')[1];
   // const boardId = e.target.id.split('-del-')[1];
-  boardsData.deleteABoard()
+  boardsData.deleteABoard(boardId)
     .then(() => {
       // eslint-disable-next-line no-use-before-define
-      printAllBoards(getCurrentUid);
+      printAllBoards(uid);
     })
     .catch((error) => console.error(error));
 };
@@ -52,7 +53,7 @@ const printAllBoards = (user) => {
         domString += `
           <div class="col-sm-4">
             <div class="card">
-            <button class="btn btn-danger delete" id="${bord.boardId}">Delete</button>
+            <button class="btn btn-danger delete" id="${bord.boardId}-del-${getCurrentUid}">Delete</button>
               <div class="card-body">
               <h5 class="card-title">${bord.boardName}</h5>
               <button class="btn btn-primary boardClick" id="${bord.boardId}">View</button>
