@@ -1,4 +1,6 @@
 import $ from 'jquery';
+// import firebase from 'firebase/auth';
+
 import pinsData from '../../helpers/data/pinsData';
 // import boardData from '../../helpers/data/boardsData';
 
@@ -23,6 +25,7 @@ const showOneBoard = (boardId) => {
           <img src="${pin.imageUrl}" class="card-img-top" alt="${pin.pinName}">
           <div class="card-body">
             <h5 class="card-title">${pin.pinName}</h5>
+            <button class="btn btn-danger delete" id="${pin.pinId}-del-${boardId}">Delete</button>
           </div>
         </div>
       `;

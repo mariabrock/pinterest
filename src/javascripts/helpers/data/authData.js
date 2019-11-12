@@ -20,7 +20,6 @@ const checkLoginStatus = () => {
       boardsDiv.removeClass('d-none');
       boards.printAllBoards(user.uid);
       home.printPinterest();
-      boards.printAllBoards(user.uid);
       // console.error(user.uid);
     } else {
       //  nobody logged in SHOW auth component
