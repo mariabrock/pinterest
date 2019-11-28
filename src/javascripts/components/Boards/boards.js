@@ -12,27 +12,16 @@ import './boards.scss';
 
 const getCurrentUid = () => firebase.auth().currentUser.uid;
 
-const deletePin = (e) => {
-  e.preventDefault();
-  const pinId = e.target.id.split('-del-')[0];
-  const boardId = e.target.id.split('-del-')[1];
-  pinsData.deleteAPin(pinId)
-    .then(() => {
-      // eslint-disable-next-line no-use-before-define
-      singleBoard.showOneBoard(boardId);
-    })
-    .catch((error) => console.error(error));
-};
 
 const deleteBoard = (e) => {
   e.preventDefault();
-  const boardId = e.target.id.split('-del-')[0];
-  const uid = e.target.id.split('-del-')[1];
-  // const boardId = e.target.id.split('-del-')[1];
+  const boardId = $(e.target.id).attr('boardInfo');
+  const uid = getCurrentUid;
+
   boardsData.deleteABoard(boardId)
     .then(() => {
-      // eslint-disable-next-line no-use-before-define
-      printAllBoards(uid);
+      e.preventDefault();
+      pinsData.printAllBoards(uid);
     })
     .catch((error) => console.error(error));
 };
@@ -53,7 +42,7 @@ const printAllBoards = (user) => {
         domString += `
           <div class="col-sm-4">
             <div class="card">
-            <button class="btn btn-danger delete" id="${bord.boardId}-del-${getCurrentUid}">Delete</button>
+            <button class="btn btn-danger delete" boardInfo="${bord.boardId}' id="${bord.boardId}-delete">Delete</button>
               <div class="card-body">
               <h5 class="card-title">${bord.boardName}</h5>
               <button class="btn btn-primary boardClick" id="${bord.boardId}">View</button>
@@ -63,10 +52,8 @@ const printAllBoards = (user) => {
           `;
       });
       domString += '</div>';
-      console.log(user.uid);
       utilities.printToDom('boards', domString);
       $('body').on('click', '.boardClick', addBoardClickEvent);
-      $('body').on('click', '.delete', deletePin);
       $('body').on('click', '.delete', deleteBoard);
     })
     .catch((error) => console.error(error));
@@ -75,6 +62,5 @@ const printAllBoards = (user) => {
 export default {
   printAllBoards,
   addBoardClickEvent,
-  deletePin,
   deleteBoard,
 };
