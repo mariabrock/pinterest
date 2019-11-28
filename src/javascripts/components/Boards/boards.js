@@ -6,7 +6,7 @@ import boardsData from '../../helpers/data/boardsData';
 import singleBoard from '../singleBoard/singleBoard';
 
 import utilities from '../../helpers/utilities';
-// import pinsData from '../../helpers/data/pinsData';
+import pinsData from '../../helpers/data/pinsData';
 
 import './boards.scss';
 
@@ -17,14 +17,11 @@ const deleteBoard = (e) => {
   e.preventDefault();
   const boardId = $(e.target.id).attr('boardInfo');
   const uid = getCurrentUid;
-  // const boardId = e.target.id.split('-del-')[0];
-  // const uid = e.target.id.split('-del-')[1];
-  // const boardId = e.target.id.split('-del-')[1];
+
   boardsData.deleteABoard(boardId)
     .then(() => {
       e.preventDefault();
-      // eslint-disable-next-line no-use-before-define
-      printAllBoards(uid);
+      pinsData.printAllBoards(uid);
     })
     .catch((error) => console.error(error));
 };
