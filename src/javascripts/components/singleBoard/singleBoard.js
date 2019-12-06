@@ -1,12 +1,12 @@
 import $ from 'jquery';
-// import firebase from 'firebase/auth';
+import firebase from 'firebase';
 
+import pins from '../pins/pins';
 import pinsData from '../../helpers/data/pinsData';
-import aPin from '../pins/pins';
-// import boardData from '../../helpers/data/boardsData';
+import boardData from '../../helpers/data/boardsData';
 
 import './singleBoard.scss';
-// import utilities from '../../helpers/utilities';
+
 
 const backToBoards = (e) => {
   e.preventDefault();
@@ -15,14 +15,26 @@ const backToBoards = (e) => {
 };
 
 const showOneBoard = (boardId) => {
-  pinsData.getMyPins(boardId)
+  pins.pinBuilder(boardId);
+  $('#single-board').on('click', '#all-boards', backToBoards);
+  $('#boards').addClass('d-none');
+  $('#single-board').removeClass('d-none');
+  // $('body').on('click', '.delete', pinsData.deletePin);
+};
+
+const getCurrentUid = () => firebase.auth().currentUser.uid;
+
+const deleteBoard = (e) => {
+  e.preventDefault();
+  const boardId = $(e.target.id).attr('boardInfo');
+  const uid = getCurrentUid;
+
+  boardData.deleteABoard(boardId)
     .then(() => {
-      $('#single-board').on('click', '#all-boards', backToBoards);
-      $('#boards').addClass('d-none');
-      $('#single-board').removeClass('d-none');
-      $('body').on('click', '.delete', aPin.deletePin);
+      e.preventDefault();
+      pinsData.printAllBoards(uid);
     })
     .catch((error) => console.error(error));
 };
 
-export default { showOneBoard };
+export default { showOneBoard, deleteBoard };
