@@ -17,8 +17,8 @@ const addBoardClickEvent = (e) => {
 
 // <img src="..." class="card-img-top" alt="...">
 
-const printAllBoards = (user) => {
-  boardsData.getMyBoards(user.uid)
+const printAllBoards = (uid) => {
+  boardsData.getBoardsByUser(uid)
     .then((boards) => {
       let domString = '<h1>Boards</h1>';
       domString += '<div class="row" id="board-cards">';

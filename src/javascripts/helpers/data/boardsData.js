@@ -1,10 +1,11 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import 'firebase/auth';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getMyBoards = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/boards.json`)
+const getBoardsByUser = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/boards.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       const demBoards = response.data;
       const boards = [];
@@ -21,4 +22,4 @@ const addNewBoard = (newBoard) => axios.post(`${baseUrl}/boards.json`, newBoard)
 
 const deleteABoard = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
 
-export default { getMyBoards, deleteABoard, addNewBoard };
+export default { getBoardsByUser, deleteABoard, addNewBoard };

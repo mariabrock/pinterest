@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import firebase from 'firebase';
 
+import pins from '../pins/pins';
 import pinsData from '../../helpers/data/pinsData';
 import boardData from '../../helpers/data/boardsData';
 
 import './singleBoard.scss';
-// import utilities from '../../helpers/utilities';
+
 
 const backToBoards = (e) => {
   e.preventDefault();
@@ -14,14 +15,11 @@ const backToBoards = (e) => {
 };
 
 const showOneBoard = (boardId) => {
-  pinsData.getMyPins(boardId)
-    .then(() => {
-      $('#single-board').on('click', '#all-boards', backToBoards);
-      $('#boards').addClass('d-none');
-      $('#single-board').removeClass('d-none');
-      $('body').on('click', '.delete', pinsData.deletePin);
-    })
-    .catch((error) => console.error(error));
+  pins.pinBuilder(boardId);
+  $('#single-board').on('click', '#all-boards', backToBoards);
+  $('#boards').addClass('d-none');
+  $('#single-board').removeClass('d-none');
+  // $('body').on('click', '.delete', pinsData.deletePin);
 };
 
 const getCurrentUid = () => firebase.auth().currentUser.uid;
