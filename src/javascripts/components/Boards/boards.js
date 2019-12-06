@@ -1,12 +1,10 @@
 import $ from 'jquery';
-// import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import boardsData from '../../helpers/data/boardsData';
 import singleBoard from '../singleBoard/singleBoard';
 
 import utilities from '../../helpers/utilities';
-// import pinsData from '../../helpers/data/pinsData';
 
 import './boards.scss';
 
@@ -14,8 +12,6 @@ const addBoardClickEvent = (e) => {
   e.preventDefault();
   singleBoard.showOneBoard(e.target.id);
 };
-
-// <img src="..." class="card-img-top" alt="...">
 
 const printAllBoards = (uid) => {
   boardsData.getBoardsByUser(uid)
@@ -38,7 +34,7 @@ const printAllBoards = (uid) => {
       domString += '</div>';
       utilities.printToDom('boards', domString);
       $('body').on('click', '.boardClick', addBoardClickEvent);
-      // $('body').on('click', '.delete', deleteBoard);
+      $('body').on('click', '.delete', boardsData.deleteBoard);
     })
     .catch((error) => console.error(error));
 };

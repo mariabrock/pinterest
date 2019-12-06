@@ -10,7 +10,7 @@ import authData from './helpers/data/authData';
 
 import 'bootstrap';
 import '../styles/main.scss';
-import pins from './components/pins/pins';
+// import pins from './components/pins/pins';
 
 
 const init = () => {
@@ -18,7 +18,6 @@ const init = () => {
   auth.loginButton();
   authData.checkLoginStatus();
   navbar.logoutEvent();
-  pins.pinBuilder();
 };
 
 init();

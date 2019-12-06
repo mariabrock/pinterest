@@ -8,13 +8,14 @@ const pinBuilder = (boardId) => {
       pins.forEach((pin) => {
         let domString = '<div class="row justify-content-between"><h1>Pins</h1></div>';
         domString += '<button class="btn btn-success" id="all-boards">Back to Boards</button>';
+        domString = '';
         domString += `
         <div class="row">
-        <div class="card col-4">
+        <div class="card col-2">
         <img src="${pin.imageUrl}" class="card-img-top" alt="${pin.pinName}">
         <div class="card-body">
             <h5 class="card-title">${pin.pinName}</h5>
-            </div>
+            <button class="btn btn-primary edit" boardInfo="${pin.boardId}" id="${pin.pinId}">Edit</button>
             <button class="btn btn-danger delete" boardInfo="${pin.boardId}" id="${pin.pinId}">Delete</button>
         </div>
         </div>
