@@ -15,7 +15,7 @@ const backToBoards = (e) => {
 };
 
 const showOneBoard = (boardId) => {
-  pins.pinBuilder(boardId);
+  pins.displayAllPins(boardId);
   $('#single-board').on('click', '#all-boards', backToBoards);
   $('#boards').addClass('d-none');
   $('#single-board').on('click', pins.pinBuilder()).removeClass('d-none');

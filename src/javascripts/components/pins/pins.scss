@@ -1,0 +1,9 @@
+.pins-section {
+  display: flex;
+  justify-content: space-between;
+
+  .pin-card {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
