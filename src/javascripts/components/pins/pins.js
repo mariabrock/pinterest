@@ -17,7 +17,7 @@ const displayAllPins = (boardId) => {
       });
       domString += '</div>';
       utilities.printToDom('single-board', domString);
-      // $('body').on('click', '#add-new-pin', createNewPin);
+      // $('body').on('click', '#create-new-pin', createNewPin);
       // $('body').on('click', '.edit-pin' , editPin);
       // eslint-disable-next-line no-use-before-define
       $('body').on('click', '.delete-pin', deleteOnePin);
@@ -66,7 +66,7 @@ const pinsModal = (pin) => {
           </div>
           <div class="form-group">
               <label for="info" class="col-form-label">Info:</label>
-              <input type="text" class="form-control" id="info" value="${pin.info ? pin.info : ''}">
+              <input type="text" class="form-control" id="pinInfo" value="${pin.info ? pin.info : ''}">
           </div>
         </form>
       </div>
@@ -80,6 +80,29 @@ const pinsModal = (pin) => {
   return domString;
 };
 
+const newPinDetails = (pin) => {
+  let domString = '';
+  domString += pinsModal(pin);
+  utilities.printToDom('exampleModal', domString);
+  // eslint-disable-next-line no-use-before-define
+  $('#submit').click(createNewPin);
+};
+
+const createNewPin = (e) => {
+  e.stopImmediatePropigation();
+  const newData = {
+    imageUrl: $('#pinImage').val(),
+    name: $('#pinName').val(),
+    info: $('#pinInfo').val(),
+  };
+  pinsData.addNewPin(newData)
+    .then(() => {
+      $('#exampleModal').modal('hide');
+      displayAllPins();
+    })
+    .catch((error) => console.error(error));
+};
+
 const deleteOnePin = (e) => {
   e.preventDefault();
   pinsData.deletePin(e.target.id)
@@ -91,4 +114,4 @@ const deleteOnePin = (e) => {
     .catch((error) => console.error(error));
 };
 
-export default { displayAllPins, deleteOnePin };
+export default { displayAllPins, newPinDetails };
