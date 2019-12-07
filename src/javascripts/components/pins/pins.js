@@ -6,9 +6,9 @@ import pinsData from '../../helpers/data/pinsData';
 
 const displayAllPins = (boardId) => {
   let domString = '<div class="text-center"><h1>Pins</h1></div>';
-  domString += '<div class="text-center"><button class="btn btn-succes add-button" id="add-new-pin" data-toggle="modal" data-target="#exampleModal">Add New Pin</button>';
+  domString += '<div class="text-center justify-content-around"><button class="btn btn-success add-button" id="add-new-pin" data-toggle="modal" data-target="#exampleModal">Add New Pin</button>';
   domString += '<button class="btn btn-light back-button" id="all-boards">Back to Boards</button></div>';
-  domString += '<div id="pins-section" class="d-flex flex-wrap">';
+  domString += '<div id="pins-section" class="d-flex flex-wrap justify-content-around">';
   pinsData.getMyPins(boardId)
     .then((pins) => {
       pins.forEach((pin) => {
@@ -17,7 +17,8 @@ const displayAllPins = (boardId) => {
       });
       domString += '</div>';
       utilities.printToDom('single-board', domString);
-      // $('body').on('click', '#create-new-pin', createNewPin);
+      // eslint-disable-next-line no-use-before-define
+      $('body').on('click', '#create-new-pin', createNewPin);
       // $('body').on('click', '.edit-pin' , editPin);
       // eslint-disable-next-line no-use-before-define
       $('body').on('click', '.delete-pin', deleteOnePin);
@@ -30,7 +31,7 @@ const pinBuilder = (pin) => {
   if (user != null) {
     domString += `
         <div class="row">
-        <div class="card pin-card col" style="width: 18rem;">
+        <div class="card border-secondary mb-3 pin-card col" style="width: 18rem;">
         <img src="${pin.imageUrl}" class="card-img-top" alt="${pin.pinName}">
         <div class="card-body">
             <h5 class="card-title">${pin.pinName}</h5>

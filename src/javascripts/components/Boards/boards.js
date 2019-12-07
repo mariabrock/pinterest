@@ -21,8 +21,8 @@ const printAllBoards = (uid) => {
       boards.forEach((board) => {
         domString += `
           <div class="col-sm-4">
-            <div class="card">
-            <button class="btn btn-danger delete" boardInfo="${board.boardId}' id="${board.boardId}-delete">Delete</button>
+            <div class="card border-secondary mb-3">
+            <button class="btn btn-danger delete col-3 offset-9" boardInfo="${board.boardId}' id="${board.boardId}-delete">Delete</button>
               <div class="card-body">
               <h5 class="card-title">${board.boardName}</h5>
               <button class="btn btn-primary boardClick" id="${board.boardId}">View</button>
@@ -34,7 +34,7 @@ const printAllBoards = (uid) => {
       domString += '</div>';
       utilities.printToDom('boards', domString);
       $('body').on('click', '.boardClick', addBoardClickEvent);
-      $('body').on('click', '.delete', boardsData.deleteBoard);
+      $('body').on('click', '.delete', boardsData.deleteABoard);
     })
     .catch((error) => console.error(error));
 };
