@@ -6,7 +6,8 @@ import pinsData from '../../helpers/data/pinsData';
 
 const displayAllPins = (boardId) => {
   let domString = '<div class="text-center"><h1>Pins</h1></div>';
-  domString += '<div class="text-center justify-content-around"><button class="btn btn-success add-button" id="add-new-pin" data-toggle="modal" data-target="#exampleModal">Add New Pin</button>';
+  // eslint-disable-next-line max-len
+  domString += '<div class="text-center justify-content-around"><button class="btn btn-success create-new-pin" id="create-new-pin" data-toggle="modal" data-target="#exampleModal">Add New Pin</button>';
   domString += '<button class="btn btn-light back-button" id="all-boards">Back to Boards</button></div>';
   domString += '<div id="pins-section" class="d-flex flex-wrap justify-content-around">';
   pinsData.getMyPins(boardId)
@@ -50,7 +51,7 @@ const pinsModal = (pin) => {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addPinDataModalTitle" >${pin.id ? 'Update Pin' : 'Add A New Pin'}</h5>
+        <h5 class="modal-title" id="addPinDataModalTitle" >${pin.id ? 'Update Pin' : 'Add New Pin'}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -90,7 +91,7 @@ const newPinDetails = (pin) => {
 };
 
 const createNewPin = (e) => {
-  e.stopImmediatePropigation();
+  e.preventDefault();
   const newData = {
     imageUrl: $('#pinImage').val(),
     name: $('#pinName').val(),
